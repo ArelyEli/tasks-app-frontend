@@ -15,6 +15,6 @@ export const routes: Routes = [
   { path: 'tasks', component: Tasks, canActivate: [authGuard] },
   { path: 'create-task', component: CreateTask, canActivate: [authGuard] },
   { path: 'edit-task/:id', component: CreateTask, canActivate: [authGuard] },
-  { path: 'verify-account', component: VerifyAccount },
+  { path: 'verify-account', component: VerifyAccount, canActivate: [publicGuard] },
   { path: '**', redirectTo: '' }
 ];
