@@ -1,3 +1,19 @@
+.create-task-button {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #7d4cdb;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.create-task-button:hover {
+  background-color: #5e3bb5;
+}
+
 .task-list {
   display: flex;
   flex-direction: column;

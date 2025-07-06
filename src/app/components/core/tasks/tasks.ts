@@ -1,11 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { TasksService } from '../../../services/tasks';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './tasks.html',
   styleUrl: './tasks.css'
 })
@@ -21,11 +22,15 @@ export class Tasks implements OnInit {
     this.tasksService.loadTasks();
   }
 
-  deleteTask(id: string) {
-    this.tasksService.deleteTask(id);
+  goToCreate() {
+    this.router.navigate(['/create-task']);
   }
 
   editTask(id: string) {
-    this.router.navigate(['/edit-task', id]);
+    this.router.navigate(['/create-task', id]);
+  }
+
+  deleteTask(id: string) {
+    this.tasksService.deleteTask(id);
   }
 }
