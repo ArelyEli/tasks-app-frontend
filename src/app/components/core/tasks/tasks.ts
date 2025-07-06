@@ -27,7 +27,7 @@ export class Tasks implements OnInit {
   }
 
   editTask(id: string) {
-    this.router.navigate(['/create-task', id]);
+    this.router.navigate(['/edit-task', id]);
   }
 
   deleteTask(id: string) {
