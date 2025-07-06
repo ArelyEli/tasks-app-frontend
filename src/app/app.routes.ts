@@ -6,6 +6,7 @@ import { Tasks } from './components/core/tasks/tasks';
 import { CreateTask } from './components/core/create-task/create-task';
 import { authGuard } from './guards/auth-guard';
 import { publicGuard } from './guards/public-guard';
+import { VerifyAccount } from './components/auth/verify-account/verify-account';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'tasks', component: Tasks, canActivate: [authGuard] },
   { path: 'create-task', component: CreateTask, canActivate: [authGuard] },
   { path: 'edit-task/:id', component: CreateTask, canActivate: [authGuard] },
+  { path: 'verify-account', component: VerifyAccount },
   { path: '**', redirectTo: '' }
 ];
