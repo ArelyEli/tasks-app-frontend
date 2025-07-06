@@ -46,6 +46,18 @@ export class AuthService {
     this.isAuthenticated.set(false);
   }
 
+  signup(email: string, password: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.userPool.signUp(email, password, [], [], (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
+    });
+  }
+  
+
   checkSession(): void {
     const user = this.userPool.getCurrentUser();
     if (user) {
