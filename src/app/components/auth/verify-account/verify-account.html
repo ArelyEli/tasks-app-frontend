@@ -2,7 +2,8 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <label>Email:</label>
-  <input type="email" formControlName="email" required />
+  <input formControlName="email" type="email" required [readonly]="true" />
+
 
   <label>Código de verificación:</label>
   <input type="text" formControlName="code" required />

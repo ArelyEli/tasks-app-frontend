@@ -12,6 +12,14 @@ import { AuthService } from '../../../services/auth';
   styleUrls: ['./verify-account.css']
 })
 export class VerifyAccount {
+
+  ngOnInit() {
+    const savedEmail = localStorage.getItem('pending_email');
+    if (savedEmail) {
+      this.form.controls['email'].setValue(savedEmail);
+    }
+  }
+  
   private auth = inject(AuthService);
   private fb = inject(FormBuilder);
   private router = inject(Router);
@@ -34,6 +42,7 @@ export class VerifyAccount {
     try {
       await this.auth.confirmSignup(email, code);
       this.success.set(true);
+      localStorage.removeItem('pending_email');
     } catch (err: any) {
       this.error.set(err.message || 'Error al verificar la cuenta');
     } finally {

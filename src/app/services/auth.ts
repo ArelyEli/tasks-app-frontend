@@ -43,7 +43,7 @@ export class AuthService {
   logout(): void {
     const user = this.userPool.getCurrentUser();
     if (user) user.signOut();
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
     this.isAuthenticated.set(false);
   }
 

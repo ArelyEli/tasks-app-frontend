@@ -34,6 +34,8 @@ export class Signup {
     try {
       await this.auth.signup(name, email, password);
       this.success.set(true);
+      localStorage.setItem('pending_email', email);
+      this.router.navigate(['/verify-account']);
     } catch (err: any) {
       this.error.set(err.message || 'Error al crear la cuenta');
     } finally {
