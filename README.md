@@ -89,6 +89,7 @@ Todas las peticiones HTTPS se gestionan con servicios de Angular, incluyendo enc
 * Agregar indicadores de carga y notificaciones (toasts)
 * Implementar pruebas unitarias
 * Implementar pruebas de integración
+* Reenvío de correo de verificación
 
 ___
 
