@@ -29,8 +29,8 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       user.authenticateUser(authDetails, {
         onSuccess: (result) => {
-          const token = result.getAccessToken().getJwtToken();
-          localStorage.setItem('access_token', token);
+          const idToken = result.getIdToken().getJwtToken();
+          localStorage.setItem('id_token', idToken);
           this.isAuthenticated.set(true);
           resolve();
         },

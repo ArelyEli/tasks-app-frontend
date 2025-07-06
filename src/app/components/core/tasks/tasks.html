@@ -1,1 +1,19 @@
-<p>tasks works!</p>
+<h2>Tus tareas</h2>
+
+@if (loading()) {
+  <p>Cargando tareas...</p>
+} @else {
+  @if (error()) {
+    <p style="color:red;">{{ error() }}</p>
+  } @else {
+    <ul>
+      @for (task of tasks(); track task.id) {
+        <li>
+          <strong>{{ task.title }}</strong><br />
+          {{ task.description }}<br />
+          Completada: {{ task.completed ? 'Sí' : 'No' }}
+        </li>
+      }
+    </ul>
+  }
+}
