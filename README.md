@@ -27,12 +27,43 @@ src/app/components/
 ├── hero/          # Sección de bienvenida
 └── navbar/        # Barra de navegación superior
 ```
+## Componentes implementados
+
+- `HeroComponent`: Página de bienvenida
+- `NavbarComponent`: Barra de navegación
+- `LoginComponent` / `SignupComponent`: Formulario de autenticación
+- `TasksComponent`: Lista y acciones sobre tareas
+- `HomeComponent`: Vista principal post-login
 
 ---
 ## Autenticación
 
 El registro e inicio de sesión se realiza mediante AWS Cognito.
 Los tokens JWT obtenidos tras iniciar sesión se almacenan y se envían automáticamente en cada solicitud a la API
+
+### Flujo de autenticación
+
+1. El usuario ingresa sus credenciales en el formulario.
+2. Se autentica mediante AWS Cognito.
+3. Se obtiene un token JWT que se guarda localmente.
+4. El token se adjunta a cada petición a la API.
+5. Las rutas protegidas solo son accesibles si el token está presente.
+
+## Protección de rutas
+La aplicación implementa guardas de rutas (Route Guards) para restringir el acceso a las vistas protegidas.
+Solo los usuarios autenticados mediante AWS Cognito pueden acceder a rutas.
+En caso de no estar autenticado, el usuario es redirigido automáticamente a la vista de login. Y de estar autenticado, en el navbar el nombre del usuario. 
+
+
+| Ruta           | Requiere login |
+|----------------|----------------|
+| `/`            | No             |
+| `/login`       | No             |
+| `/home`        | No             |
+| `/signup`      | Sí             |
+| `/create-task` | Sí             |
+| `/tasks`       | Sí             |
+
 
 
 ## Integración con la API
