@@ -4,13 +4,15 @@ import { Login } from './components/auth/login/login';
 import { Signup } from './components/auth/signup/signup';
 import { Tasks } from './components/core/tasks/tasks';
 import { CreateTask } from './components/core/create-task/create-task';
+import { authGuard } from './guards/auth-guard';
+import { publicGuard } from './guards/public-guard';
 
 export const routes: Routes = [
   { path: '', component: Home },
-  { path: 'login', component: Login },
-  { path: 'signup', component: Signup },
-  { path: 'tasks', component: Tasks },
-  { path: 'create-task', component: CreateTask },
-  { path: 'edit-task/:id', component: CreateTask },
+  { path: 'login', component: Login, canActivate: [publicGuard] },
+  { path: 'signup', component: Signup, canActivate: [publicGuard] },
+  { path: 'tasks', component: Tasks, canActivate: [authGuard] },
+  { path: 'create-task', component: CreateTask, canActivate: [authGuard] },
+  { path: 'edit-task/:id', component: CreateTask, canActivate: [authGuard] },
   { path: '**', redirectTo: '' }
 ];
