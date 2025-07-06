@@ -43,6 +43,7 @@ export class VerifyAccount {
       await this.auth.confirmSignup(email, code);
       this.success.set(true);
       localStorage.removeItem('pending_email');
+      this.router.navigate(['/login'], { queryParams: { verified: '1' } });
     } catch (err: any) {
       this.error.set(err.message || 'Error al verificar la cuenta');
     } finally {

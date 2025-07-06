@@ -46,3 +46,29 @@ p[style="color:red"] {
     text-align: center;
     font-weight: 500;
 }
+
+.snackbar {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    font-weight: 500;
+    z-index: 1000;
+    animation: fadein 0.3s ease, fadeout 0.3s ease 2.7s;
+  }
+  
+  @keyframes fadein {
+    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+  
+  @keyframes fadeout {
+    from { opacity: 1; transform: translateX(-50%) translateY(0); }
+    to   { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  }
+  

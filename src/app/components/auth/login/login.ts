@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth';
 
 @Component({
@@ -14,6 +13,7 @@ import { AuthService } from '../../../services/auth';
 export class Login {
   private auth = inject(AuthService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
@@ -23,6 +23,16 @@ export class Login {
 
   loading = signal(false);
   error = signal('');
+  verified = signal(false);
+
+  constructor() {
+    this.route.queryParamMap.subscribe(params => {
+      if (params.get('verified') === '1') {
+        this.verified.set(true);
+        setTimeout(() => this.verified.set(false), 3000);
+      }
+    });
+  }
 
   async onSubmit() {
     this.loading.set(true);
