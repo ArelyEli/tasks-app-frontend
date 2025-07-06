@@ -1,0 +1,17 @@
+<nav class="navbar">
+    <div class="app-title" routerLink="/">TasksApp</div>
+  
+    @if (isAuthenticated()) {
+      <div class="nav-actions">
+        <a routerLink="/tasks">Tareas</a>
+        <a routerLink="/create-task">Nueva</a>
+        <button (click)="logout()">Cerrar sesión</button>
+      </div>
+    } @else {
+      <div class="nav-actions">
+        <a routerLink="/login">Login</a>
+        <a routerLink="/signup">Registro</a>
+      </div>
+    }
+  </nav>
+  
