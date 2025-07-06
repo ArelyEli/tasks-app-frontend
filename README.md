@@ -38,7 +38,16 @@ Los tokens JWT obtenidos tras iniciar sesión se almacenan y se envían automát
 ## Integración con la API
 La aplicación consume una API REST desplegada en AWS API Gateway.
 Todas las peticiones HTTPS se gestionan con servicios de Angular, incluyendo encabezados con el token JWT para autenticación.
-__
+
+---
+## Tareas pendientes
+
+Añadir mensajes de validación en formularios
+
+Mejorar el manejo de errores al consumir la API
+
+Agregar indicadores de carga y notificaciones (toasts)
+___
 
 ## Despliegue
 
@@ -63,3 +72,5 @@ npm install
 ng serve
 ```
 4. Abre tu navegador en http://localhost:4200
+
+
