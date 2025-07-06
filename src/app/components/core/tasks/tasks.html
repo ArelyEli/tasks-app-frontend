@@ -6,14 +6,16 @@
   @if (error()) {
     <p style="color:red;">{{ error() }}</p>
   } @else {
-    <ul>
+    <div class="task-list">
       @for (task of tasks(); track task.id) {
-        <li>
-          <strong>{{ task.title }}</strong><br />
-          {{ task.description }}<br />
-          Completada: {{ task.completed ? 'Sí' : 'No' }}
-        </li>
+        <div class="task-item">
+          <div class="task-title">{{ task.title }}</div>
+          <div class="task-desc">{{ task.description }}</div>
+          <div class="task-status">
+            Completada: <span [class.completed]="task.completed">{{ task.completed ? 'Sí' : 'No' }}</span>
+          </div>
+        </div>
       }
-    </ul>
+    </div>
   }
 }
