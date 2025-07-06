@@ -1,59 +1,76 @@
-# TasksAppFrontend
+# Frontend – Aplicación de Gestión de Tareas
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+Este repositorio contiene el frontend de una aplicación de gestión de tareas desarrollada con **Angular**.  
+Proporciona una interfaz amigable para que los usuarios puedan crear, consultar, actualizar y eliminar tareas. Está integrada con servicios de AWS para autenticación y consumo de la API.
 
-## Development server
+---
 
-To start a local development server, run:
+## Funcionalidades
+
+- **Autenticación de usuarios** (Registro e inicio de sesión con AWS Cognito)
+- **Gestión de tareas** (Operaciones CRUD con API REST)
+- Interfaz responsiva con componentes modulares en Angular
+- Integración con AWS API Gateway y despliegue en S3
+
+---
+
+## Estructura del proyecto
+
+```bash
+src/app/components/
+├── auth/          # Formularios de login y registro
+│   ├── login/
+│   └── signup/
+├── core/          # Vistas principales
+│   ├── home/
+│   └── tasks/
+├── hero/          # Sección de bienvenida
+└── navbar/        # Barra de navegación superior
+```
+
+---
+## Autenticación
+
+El registro e inicio de sesión se realiza mediante AWS Cognito.
+Los tokens JWT obtenidos tras iniciar sesión se almacenan y se envían automáticamente en cada solicitud a la API
+
+
+## Integración con la API
+La aplicación consume una API REST desplegada en AWS API Gateway.
+Todas las peticiones HTTPS se gestionan con servicios de Angular, incluyendo encabezados con el token JWT para autenticación.
+
+---
+## Tareas pendientes
+
+Añadir mensajes de validación en formularios
+
+Mejorar el manejo de errores al consumir la API
+
+Agregar indicadores de carga y notificaciones (toasts)
+___
+
+## Despliegue
+
+La aplicación está diseñada para desplegarse como sitio estático en AWS S3,
+con acceso restringido mediante CloudFront y autenticación de Cognito en producción.
+
+___
+
+## Cómo ejecutar localmente
+
+1. Clona el repositorio.
+
+2. Instala las dependencias:
+
+```bash
+npm install
+```
+
+3. Ejecuta el servidor de desarrollo:
 
 ```bash
 ng serve
 ```
+4. Abre tu navegador en http://localhost:4200
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
