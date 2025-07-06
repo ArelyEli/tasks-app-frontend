@@ -25,7 +25,12 @@ export class TasksService {
 
     this.http.get<Task[]>('https://jq2t0u9akl.execute-api.us-east-1.amazonaws.com/Prod/tasks/', { headers })
       .subscribe({
-        next: (data) => this.tasks.set(data),
+        next: (data) => {
+          const sorted = [...data].sort((a, b) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          );
+          this.tasks.set(sorted);
+        },
         error: () => this.error.set('Error cargando tareas'),
         complete: () => this.loading.set(false)
       });
