@@ -11,5 +11,6 @@ export const routes: Routes = [
   { path: 'signup', component: Signup },
   { path: 'tasks', component: Tasks },
   { path: 'create-task', component: CreateTask },
+  { path: 'edit-task/:id', component: CreateTask },
   { path: '**', redirectTo: '' }
 ];

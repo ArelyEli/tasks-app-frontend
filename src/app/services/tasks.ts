@@ -26,7 +26,22 @@ export class TasksService {
     this.http.get<Task[]>('https://jq2t0u9akl.execute-api.us-east-1.amazonaws.com/Prod/tasks/', { headers })
       .subscribe({
         next: (data) => this.tasks.set(data),
-        error: (err) => this.error.set('Error cargando tareas'),
+        error: () => this.error.set('Error cargando tareas'),
+        complete: () => this.loading.set(false)
+      });
+  }
+
+  deleteTask(id: string) {
+    this.loading.set(true);
+    this.error.set('');
+
+    const token = localStorage.getItem('id_token');
+    const headers = new HttpHeaders().set('Authorization', token || '');
+
+    this.http.delete(`https://jq2t0u9akl.execute-api.us-east-1.amazonaws.com/Prod/tasks/${id}`, { headers })
+      .subscribe({
+        next: () => this.loadTasks(),
+        error: () => this.error.set('Error eliminando tarea'),
         complete: () => this.loading.set(false)
       });
   }
