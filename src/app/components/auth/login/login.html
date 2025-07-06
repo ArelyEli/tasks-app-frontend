@@ -1,1 +1,11 @@
-<p>login works!</p>
+<h2>Iniciar sesión</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input formControlName="email" type="email" placeholder="Correo" required />
+  <input formControlName="password" type="password" placeholder="Contraseña" required />
+  <button type="submit" [disabled]="loading()">Entrar</button>
+</form>
+
+@if (error()) {
+  <p style="color:red">{{ error() }}</p>
+}
