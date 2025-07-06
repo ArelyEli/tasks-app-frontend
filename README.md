@@ -5,6 +5,14 @@ Proporciona una interfaz amigable para que los usuarios puedan crear, consultar,
 
 ---
 
+## Ejecución
+Actualmente la aplicación se encuentra desplegada en AWS S3 y CloudFront.
+Puede ser visitada y testeada en la siguiente URL:
+
+https://d2q23mc6g7ehph.cloudfront.net/
+
+---
+
 ## Funcionalidades
 
 - **Autenticación de usuarios** (Registro, inicio de sesión, cierre de sesión y verificación de correo con AWS Cognito)
