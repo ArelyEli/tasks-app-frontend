@@ -13,7 +13,9 @@ import { AuthService } from '../../../services/auth';
 export class Navbar implements OnInit {
   auth = inject(AuthService);
   router = inject(Router);
+
   isAuthenticated = this.auth.isAuthenticated;
+  userName = this.auth.userName;
 
   ngOnInit() {
     this.auth.checkSession();

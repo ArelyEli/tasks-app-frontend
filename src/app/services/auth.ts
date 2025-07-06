@@ -15,6 +15,7 @@ export class AuthService {
   });
 
   isAuthenticated = signal(false);
+  userName = signal('');
 
   login(email: string, password: string): Promise<void> {
     const authDetails = new AuthenticationDetails({
@@ -33,6 +34,14 @@ export class AuthService {
           const idToken = result.getIdToken().getJwtToken();
           localStorage.setItem('id_token', idToken);
           this.isAuthenticated.set(true);
+
+          user.getUserAttributes((err, attrs) => {
+            if (!err && attrs) {
+              const nameAttr = attrs.find(a => a.getName() === 'given_name');
+              this.userName.set(nameAttr?.getValue() ?? '');
+            }
+          });
+
           resolve();
         },
         onFailure: (err) => reject(err),
@@ -45,6 +54,7 @@ export class AuthService {
     if (user) user.signOut();
     localStorage.removeItem('id_token');
     this.isAuthenticated.set(false);
+    this.userName.set('');
   }
 
   signup(name: string, email: string, password: string): Promise<void> {
@@ -52,7 +62,7 @@ export class AuthService {
       new CognitoUserAttribute({ Name: 'email', Value: email }),
       new CognitoUserAttribute({ Name: 'given_name', Value: name }),
     ];
-  
+
     return new Promise((resolve, reject) => {
       this.userPool.signUp(email, password, attributes, [], (err, result) => {
         if (err) {
@@ -69,12 +79,20 @@ export class AuthService {
       user.getSession((err: any, session: any) => {
         if (err || !session.isValid()) {
           this.isAuthenticated.set(false);
+          this.userName.set('');
         } else {
           this.isAuthenticated.set(true);
+          user.getUserAttributes((err, attrs) => {
+            if (!err && attrs) {
+              const nameAttr = attrs.find(a => a.getName() === 'given_name');
+              this.userName.set(nameAttr?.getValue() ?? '');
+            }
+          });
         }
       });
     } else {
       this.isAuthenticated.set(false);
+      this.userName.set('');
     }
   }
 
@@ -83,7 +101,7 @@ export class AuthService {
       Username: email,
       Pool: this.userPool,
     });
-  
+
     return new Promise((resolve, reject) => {
       user.confirmRegistration(code, true, (err, result) => {
         if (err) return reject(err);

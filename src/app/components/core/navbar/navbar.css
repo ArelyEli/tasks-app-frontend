@@ -36,3 +36,8 @@
 .nav-actions button:hover {
     opacity: 0.8;
 }
+
+.user-greeting {
+    margin-right: 1rem;
+    font-weight: 500;
+}
