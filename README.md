@@ -9,6 +9,8 @@ Proporciona una interfaz amigable para que los usuarios puedan crear, consultar,
 Actualmente la aplicación se encuentra desplegada en AWS S3 y CloudFront.
 Puede ser visitada y testeada en la siguiente URL:
 
+Debido a que este proyecto es una prueba técnica, se han eliminado los servicios de AWS para evitar costos innecesarios.
+
 https://d2q23mc6g7ehph.cloudfront.net/
 
 ---
